@@ -1,0 +1,11 @@
+.tile {
+  border: 1px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0px -1px -1px 0px;
+}
+
+.tile:hover {
+  background-color: rgb(255, 112, 112);
+}
