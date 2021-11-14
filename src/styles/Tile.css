@@ -1,11 +1,21 @@
 .tile {
-  border: 1px solid black;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0px -1px -1px 0px;
+    background-color: rgb(135, 184, 229);
+    border: 1px solid black;
+    margin: 0 -1px -1px 0;
+    cursor: pointer;
 }
 
 .tile:hover {
-  background-color: rgb(255, 112, 112);
+    background-color: rgb(255, 112, 112);
+}
+
+.tile-dot {
+    height: 40px;
+    width: 40px;
+    background-color: #b2b2b2;
+    border-radius: 50%;
+}
+
+.color-dirty {
+    background-color: red;
 }

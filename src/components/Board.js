@@ -1,33 +1,23 @@
 import React from 'react';
 import Tile from './Tile';
 import '../styles/Board.css';
-import { TILE_STATE } from '../constants/Constants';
-import { useDispatch, useSelector } from "react-redux";
-import { selectBoard } from "../features/counterSlice";
+import { useSelector } from 'react-redux';
 
 const Board = () => {
 
-  const boardData = useSelector(selectBoard);
-  const dispatch = useDispatch();
-
-  // helper functions
-  const initializeBoard = (boardSize, defaultValue) => {
-    return Array(boardSize).fill(Array(boardSize).fill(defaultValue));
-  }
+  const selectBoard = useSelector((state) => state.common.board);
 
   const renderTile = (row, col, value) => {
     return <Tile key={[row, col].join('-')} innerValue={value} row={row} col={col}/>;
   }
 
   const renderTiles = (board) => {
-    return board.map((cols, col) =>
-      cols.map((value, row) =>
-        renderTile(row, col, value)));
+    return board.map((rowArray, rowId) =>
+      rowArray.map((value, colId) =>
+        renderTile(rowId, colId, value)));
   }
 
-  // initialization and rendering
-  const board = initializeBoard(10, TILE_STATE.PRISTINE);
-  const renderedTiles = renderTiles(board);
+  const renderedTiles = renderTiles(selectBoard);
 
   return (
     <div className='board-container'>

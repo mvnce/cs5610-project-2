@@ -1,17 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import { store } from './app/store';
+import './styles/Common.css';
 import { Provider } from 'react-redux';
 import * as serviceWorker from './serviceWorker';
 import Board from "./components/Board";
+import store from "./store";
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <Board />
-      <App />
+      <Board/>
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')
