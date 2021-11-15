@@ -1,22 +1,49 @@
 .tile {
-  background-color: rgb(135, 184, 229);
-  border: 1px solid black;
+  color: Black;
+  font-size: 12px;
+  border: 1px solid Black;
   margin: 0 -1px -1px 0;
-  cursor: pointer;
-}
-
-.tile:hover {
-  background-color: rgb(255, 112, 112);
+  transition-duration: 0.3s;
 }
 
 .tile-dot {
-  height: 40px;
-  width: 40px;
-  background-color: black;
+  height: 36px;
+  width: 36px;
+  background-color: Black;
   color: white;
   border-radius: 50%;
+  transition-duration: 0.3s;
+}
+
+.color-pristine {
+  background-color: LightSkyBlue;
+  color: Black;
+  transition-duration: 0.3s;
 }
 
 .color-dirty {
-  background-color: red;
+  background-color: Gold;
+  color: Black;
+  transition-duration: 0.3s;
+}
+
+.color-destructed {
+  background-color: LightCoral;
+  color: Black;
+  transition-duration: 0.3s;
+}
+
+.color-pristine:hover {
+  background-color: LawnGreen;
+  font-weight: bold;
+  font-size: 15px;
+  transition-duration: 0.3s;
+}
+
+.cursor-clickable {
+  cursor: pointer;
+}
+
+.cursor-unclickable {
+  cursor: not-allowed;
 }

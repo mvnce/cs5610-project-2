@@ -1,15 +1,5 @@
-import { CLICK_TILE } from "../constants/ActionTypes";
+import { ACTION_TYPE } from "../constants";
 
 export function clickTile(payload) {
-  return { type: CLICK_TILE, payload };
-}
-
-export function getData() {
-  return function (dispatch) {
-    return fetch("https://jsonplaceholder.typicode.com/posts")
-      .then((response) => response.json())
-      .then((json) => {
-        dispatch({ type: "DATA_LOADED", payload: json });
-      });
-  };
+  return { type: ACTION_TYPE.CLICK_TILE, payload };
 }

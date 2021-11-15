@@ -1,22 +1,20 @@
-import { SHIP_DIRECTION } from "../constants/Constants";
+import { RAW_SHIPS, SHIP_DIRECTION } from "../constants";
 
 const randomNumberByInterval = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1) + min);
 };
 
 const randomShipDirection = () => {
-  return [SHIP_DIRECTION.VERTICAL, SHIP_DIRECTION.HORIZONTAL][
-    randomNumberByInterval(0, 1)
-  ];
+  return [SHIP_DIRECTION.VERTICAL, SHIP_DIRECTION.HORIZONTAL][randomNumberByInterval(0, 1)];
 };
 
 const deepCopy = (data) => JSON.parse(JSON.stringify(data));
 
-const createMatrix = (rowCount, colCount) => {
+const createMatrix = (rowCount, colCount, defaultValue) => {
   const matrix = [];
   for (let row = 0; row < rowCount; row++) {
     const rowList = [];
-    for (let col = 0; col < colCount; col++) rowList.push(null);
+    for (let col = 0; col < colCount; col++) rowList.push(defaultValue);
     matrix.push(rowList);
   }
   return matrix;
@@ -24,23 +22,12 @@ const createMatrix = (rowCount, colCount) => {
 
 const createShipBoard = (rowCount, colCount) => {
   let board = createMatrix(rowCount, colCount);
-  const ships = [
-    { id: "a", size: 5 },
-    { id: "b", size: 4 },
-    { id: "c", size: 3 },
-    { id: "d", size: 3 },
-    { id: "e", size: 2 },
-  ];
 
   for (let tries = 0; tries < 10000; tries++) {
-    console.info("trying to generate ships with iteration: ", tries + 1);
-    board = createMatrix(rowCount, colCount);
-    const hasConflicts = embedShips(board, ships);
+    board = createMatrix(rowCount, colCount, null);
+    const hasConflicts = embedShips(board, RAW_SHIPS);
 
-    printShipBoardHelper(board);
-    console.log("Reading hasConflicts: ", hasConflicts);
-
-    if (hasConflicts.indexOf(true) < 0) break;
+    if (!hasConflicts.includes(true)) break;
   }
   return board;
 };
@@ -87,15 +74,23 @@ const embedShip = (shipBoard, rawShip, direction, initialCoordinate) => {
   return hasConflict;
 };
 
-const printShipBoardHelper = (board) => {
+const debugLogger = (...strs) => {
+  console.debug(...strs);
+};
+
+const debugBoardsLogger = (shipBoard, dataBoard) => {
   let rowString = "";
-  for (let i = 0; i < board.length; i++) {
-    for (let j = 0; j < board[i].length; j++) {
-      rowString += (board[i][j] == null ? "-" : board[i][j]) + " ";
+  for (let i = 0; i < shipBoard.length; i++) {
+    for (let j = 0; j < shipBoard[i].length; j++) {
+      rowString += (shipBoard[i][j] === null ? "-" : shipBoard[i][j]) + " ";
+    }
+    rowString += "   |   ";
+    for (let j = 0; j < dataBoard[i].length; j++) {
+      rowString += (dataBoard[i][j] === 0 ? "-" : dataBoard[i][j]) + " ";
     }
     rowString += "\n";
   }
-  console.log(rowString);
+  debugLogger(rowString);
 };
 
-export { createMatrix, createShipBoard, deepCopy };
+export { createMatrix, createShipBoard, deepCopy, debugBoardsLogger, debugLogger };

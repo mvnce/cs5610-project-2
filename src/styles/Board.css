@@ -8,6 +8,6 @@
   display: grid;
   grid-template-rows: repeat(10, 50px);
   grid-template-columns: repeat(10, 50px);
-  grid-auto-flow: column;
+  grid-auto-flow: row;
   gap: 0;
 }
