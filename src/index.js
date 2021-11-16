@@ -5,11 +5,23 @@ import { Provider } from "react-redux";
 import * as serviceWorker from "./serviceWorker";
 import Main from "./components/Main";
 import store from "./store";
+import Header from './router/header';
+import GameRoutes from "./components/Routes";
 
 ReactDOM.render(
+  // <Router>
+  //   <Header />
+  //   <Routes>
+  //     <Route path="section1" element={<Main />}/>
+  //     <Route path="instruction"/>
+      
+  //   </Routes>
+  // </Router>,
+
+
   <React.StrictMode>
     <Provider store={store}>
-      <Main />
+      <GameRoutes />
     </Provider>
   </React.StrictMode>,
   document.getElementById("root")

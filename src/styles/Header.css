@@ -1,0 +1,20 @@
+#SectionHeader {
+    width: 100%;
+    border-bottom: 2px solid black;
+}
+
+#SectionHeader a {
+    font-size: 24px;
+    color: gray;
+    text-decoration: none;
+    margin-right: 25px;
+    
+}
+
+#SectionHeader a:first-child {
+    margin-right: 25px;
+}
+
+#SectionHeader a:last-child {
+    margin-right: 35px;
+}
