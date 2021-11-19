@@ -20,7 +20,7 @@ const Tile = (props) => {
     const winningState = useSelector((state) => state.common.winner);
     const currentPlayer = useSelector((state) => state.common.currentPlayer);
 
-    const boardStatel;
+    const boardState;
     if (currentPlayer === "human") {
       boardState = useSelector((state) => state.common.boardState);
     } else {
