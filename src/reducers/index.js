@@ -11,6 +11,8 @@ const INITIAL_STATE = {
     createShipBoard(10, 10),
     createShipBoard(10, 10),
   ],
+  winner: "",
+  currentPlayer:"human"
 };
 
 debugBoardsLogger(INITIAL_STATE.shipBoards[0], INITIAL_STATE.dataBoards[0]);
@@ -53,6 +55,8 @@ function commonReducer(state = INITIAL_STATE, action) {
 
       return newState
 
+      case ACTION_TYPE.WINNER:
+        return ({...state, winner: action.winner});
     default:
       return state;
   }

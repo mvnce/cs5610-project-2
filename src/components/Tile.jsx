@@ -3,6 +3,7 @@ import "../styles/Tile.css";
 import { useDispatch } from "react-redux";
 import { ACTION_TYPE, TILE_STATE } from "../constants";
 import classNames from "classnames";
+import { useSelector } from "react-redux";
 
 const Tile = (props) => {
   const dispatch = useDispatch();
@@ -14,7 +15,41 @@ const Tile = (props) => {
       col: props.col,
       boardIndex: props.boardIndex,
     });
+
+    // winning situation
+    const winningState = useSelector((state) => state.common.winner);
+    const currentPlayer = useSelector((state) => state.common.currentPlayer);
+
+    const boardStatel;
+    if (currentPlayer === "human") {
+      boardState = useSelector((state) => state.common.boardState);
+    } else {
+      // AIboerd need to be implemented
+      boardState = useSelector((state) => state.common.AIboard);
+      
+    }
+
+    
+
+    let count = 0;
+    for (let i = 0; i < 10; i++) {
+      for (let j = 0; j < 10; j++) {
+        if (boardState[i][j] == TILE_STATE.DESTRUCTED) {
+          count++;
+        }
+      }
+    }
+
+    if (count === 17) {
+      dispatch({
+        type:ACTION_TYPE.WINNER,
+        winner:currentPlayer,
+      })
+    }
+    
   };
+
+  
 
   const outerClassNames = classNames("tile", "middle-center", {
     "color-pristine": props.dataValue === TILE_STATE.PRISTINE,

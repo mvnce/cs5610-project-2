@@ -31,6 +31,8 @@ const Board = (props) => {
       <div className="board"> {renderTiles()} </div>
     </div>
   );
+
+  
 };
 
 export default Board;
