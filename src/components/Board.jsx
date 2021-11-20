@@ -4,8 +4,12 @@ import "../styles/Board.css";
 import { useSelector } from "react-redux";
 
 const Board = (props) => {
-  const dataBoard = useSelector((state) => state.common.dataBoards[props.boardIndex]);
-  const shipBoard = useSelector((state) => state.common.shipBoards[props.boardIndex]);
+  const dataBoard = useSelector(
+    (state) => state.common.dataBoards[props.ownerPlayerType]
+  );
+  const shipBoard = useSelector(
+    (state) => state.common.shipBoards[props.ownerPlayerType]
+  );
 
   const renderTile = (row, col) => {
     return (
@@ -15,7 +19,7 @@ const Board = (props) => {
         col={col}
         dataValue={dataBoard[row][col]}
         shipValue={shipBoard[row][col]}
-        boardIndex={props.boardIndex}
+        ownerPlayerType={props.ownerPlayerType}
       />
     );
   };
